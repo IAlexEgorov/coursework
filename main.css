@@ -1,0 +1,54 @@
+html{
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    background: #252525;
+}
+
+.main-div{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 800px;
+    height: 800px;
+    background: #252525;
+}
+.ellips{
+    position: absolute;
+    width: 783px;
+    height: 783px;
+    left: 444px;
+    top: 46px;
+    border-radius: 783px; 
+    background: #0088D1;
+}
+.autostands-title{
+    position: absolute;
+    width: 249px;
+    height: 56px;
+    left: 22px;
+    top: 46px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+    color: #EEEEEE;
+}
+.autostands-desc{
+    position: absolute;
+    width: 455px;
+    height: 19px;
+    left: 24px;
+    top: 110px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #BBBBBB;
+}

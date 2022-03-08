@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="input_rect.css">
+    <link rel="stylesheet" type="text/css" href="buttons.css">
+    <title>Autostands</title>
+</head>
+<body>
+    <div class="main-div">
+        <div class="ellips"></div>
+        <span class="autostands-title">AutoStands</span>
+        <span class="autostands-desc">Создание автостендов для разработчиков и тестеровщиков</span>
+
+        <div class="input-main-rectangle">
+            <div class="input-rectangle">
+                <div class="input-forms">
+                        <legend>Контактная информация</legend>
+                        <input type="text" value="OPS-666">
+                        <div class="">
+                            <span>Название вашей задачи из Jira</span>
+                        </div>
+                </div>
+                <div class="input-forms">
+                        <legend>GitRepo</legend>
+                        <input type="text" value="ssh://git@bitbucket.web-bee.ru:7999/dvps/discord-jira-bot.git">
+                        <span>Ссылка на репозиторий  Bitbucket</span>
+                </div>
+                <div class="input-forms">
+                        <legend>GitBranch</legend>
+                        <input type="text" value="master">
+                        <span>Название ветки</span>
+                </div>
+                <div class="input-forms">
+                        <legend>Path to dockerfile and docker-compose</legend>
+                        <input type="text" value=".">
+                        <span>Относительный путь в репозитории до Docker файлов</span>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <div class="create-button">
+                    <button>CREATE</button>
+                </div>
+    
+                <div class="delete-button">
+                    <button>DELETE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
