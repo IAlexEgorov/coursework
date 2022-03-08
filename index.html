@@ -11,47 +11,52 @@
 </head>
 <body>
     <div class="main-div">
-        <div class="ellips"></div>
-        <span class="autostands-title">AutoStands</span>
-        <span class="autostands-desc">Создание автостендов для разработчиков и тестеровщиков</span>
-
-        <div class="input-main-rectangle">
-            <div class="input-rectangle">
-                <div class="input-forms">
-                        <legend>Контактная информация</legend>
-                        <input type="text" value="OPS-666">
-                        <div class="">
-                            <span>Название вашей задачи из Jira</span>
-                        </div>
-                </div>
-                <div class="input-forms">
-                        <legend>GitRepo</legend>
-                        <input type="text" value="ssh://git@bitbucket.web-bee.ru:7999/dvps/discord-jira-bot.git">
-                        <span>Ссылка на репозиторий  Bitbucket</span>
-                </div>
-                <div class="input-forms">
-                        <legend>GitBranch</legend>
-                        <input type="text" value="master">
-                        <span>Название ветки</span>
-                </div>
-                <div class="input-forms">
-                        <legend>Path to dockerfile and docker-compose</legend>
-                        <input type="text" value=".">
-                        <span>Относительный путь в репозитории до Docker файлов</span>
-                </div>
+        <div class="first-inside">
+            <div class="title-desc">
+                <span class="autostands-title">AutoStands</span><br>
+                <span class="autostands-desc">Создание автостендов для разработчиков и тестеровщиков</span>
             </div>
-
-            <div class="buttons">
-                <div class="create-button">
-                    <button>CREATE</button>
+            <div class="input-main-rectangle">
+                <div class="input-rectangle">
+                    <div class="input-forms">
+                            <legend>Контактная информация</legend>
+                            <input type="text" value="OPS-666">
+                            <div class="">
+                                <span>Название вашей задачи из Jira</span>
+                            </div>
+                    </div>
+                    <div class="input-forms">
+                            <legend>GitRepo</legend>
+                            <input type="text" value="ssh://git@bitbucket.web-bee.ru:7999/dvps/discord-jira-bot.git">
+                            <span>Ссылка на репозиторий  Bitbucket</span>
+                    </div>
+                    <div class="input-forms">
+                            <legend>GitBranch</legend>
+                            <input type="text" value="master">
+                            <span>Название ветки</span>
+                    </div>
+                    <div class="input-forms">
+                            <legend>Path to dockerfile and docker-compose</legend>
+                            <input type="text" value=".">
+                            <span>Относительный путь в репозитории до Docker файлов</span>
+                    </div>
                 </div>
     
-                <div class="delete-button">
-                    <button>DELETE</button>
+                <div class="buttons">
+                    <div class="create-button">
+                        <button>CREATE</button>
+                    </div>
+        
+                    <div class="delete-button">
+                        <button>DELETE</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+        
+        <div class="second-inside">
+            <div class="ellips"></div>
+        </div>
+    </div>    
 </body>
 </html>

@@ -1,34 +1,49 @@
 html{
     margin: 0;
     padding: 0;
-    position: relative;
-
     background: #252525;
 }
-
 .main-div{
-    margin: 0;
-    padding: 0;
-    position: relative;
     width: 800px;
     height: 800px;
+    border: 2px solid purple;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.first-inside{
+    display: flex;
+    flex-direction: column;
+}
+.second-inside{
+    margin: 10% 0;
+}
+
+.title-desc{
+    margin: 20px 10px 50px 10px;
+    border: 2px solid green;
+}
+.input-main-rectangle{
+    width: 375px;
+    
     background: #252525;
+    box-shadow: 0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid red;
 }
 .ellips{
-    position: absolute;
-    width: 783px;
-    height: 783px;
-    left: 444px;
-    top: 46px;
-    border-radius: 783px; 
+    width: 400px;
+    height: 400px;
+    border-radius: 800px 0 0 800px;
+
     background: #0088D1;
+    border: 2px solid yellow;
 }
+
+
 .autostands-title{
-    position: absolute;
     width: 249px;
     height: 56px;
-    left: 22px;
-    top: 46px;
 
     font-family: Roboto;
     font-style: normal;
@@ -38,11 +53,8 @@ html{
     color: #EEEEEE;
 }
 .autostands-desc{
-    position: absolute;
     width: 455px;
     height: 19px;
-    left: 24px;
-    top: 110px;
     
     font-family: Roboto;
     font-style: normal;
