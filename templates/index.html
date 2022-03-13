@@ -14,49 +14,61 @@
         <div class="first-inside">
             <div class="title-desc">
                 <span class="autostands-title">AutoStands</span><br>
-                <span class="autostands-desc">Создание автостендов для разработчиков и тестеровщиков</span>
+                <span class="autostands-desc">{{desc}}</span>
             </div>
-            <div class="input-main-rectangle">
-                <div class="input-rectangle">
-                    <div class="input-forms">
-                            <legend>Контактная информация</legend>
-                            <input type="text" value="OPS-666">
-                            <div class="">
+            <form action="/" method="post" class="form-sender">
+                <div class="input-main-rectangle">
+                    <div class="input-rectangle">
+                        
+                            <div class="input-forms">
+                                <legend>Env</legend>
+                                <input type="text" name="env" value="OPS-666">
                                 <span>Название вашей задачи из Jira</span>
                             </div>
-                    </div>
-                    <div class="input-forms">
-                            <legend>GitRepo</legend>
-                            <input type="text" value="ssh://git@bitbucket.web-bee.ru:7999/dvps/discord-jira-bot.git">
-                            <span>Ссылка на репозиторий  Bitbucket</span>
-                    </div>
-                    <div class="input-forms">
-                            <legend>GitBranch</legend>
-                            <input type="text" value="master">
-                            <span>Название ветки</span>
-                    </div>
-                    <div class="input-forms">
-                            <legend>Path to dockerfile and docker-compose</legend>
-                            <input type="text" value=".">
-                            <span>Относительный путь в репозитории до Docker файлов</span>
-                    </div>
-                </div>
-    
-                <div class="buttons">
-                    <div class="create-button">
-                        <button>CREATE</button>
+                            <div class="input-forms">
+                                    <legend>GitRepo</legend>
+                                    <input type="text" name="repo" value="ssh://git@bitbucket.web-bee.ru:7999/dvps/discord-jira-bot.git">
+                                    <span>Ссылка на репозиторий  Bitbucket</span>
+                            </div>
+                            <div class="input-forms">
+                                    <legend>GitBranch</legend>
+                                    <input type="text" name="branch" value="master">
+                                    <span>Название ветки</span>
+                            </div>
+                            <div class="input-forms">
+                                    <legend>Path to dockerfile and docker-compose</legend>
+                                    <input type="text" name="dockerPath" value=".">
+                                    <span>Относительный путь в репозитории до Docker файлов</span>
+                            </div>
+                            <div class="input-forms">
+                                <legend>Login</legend>
+                                <input type="text" name="login" value="">
+                                <span>Логин от учетки FreeIPA</span>
+                            </div>
+                            <div class="input-forms">
+                                <legend>Password</legend>
+                                <input type="password" name="pass" value="">
+                                <span>Пароль от учетки FreeIPA</span>
+                            </div>
                     </div>
         
-                    <div class="delete-button">
-                        <button>DELETE</button>
+                    <div class="buttons">
+                        <div class="create-button">
+                            <button type="submit" value="create">CREATE</button>
+                        </div>
+            
+                        <div class="delete-button">
+                            <button type="submit" value="delete">DELETE</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         
         <div class="second-inside">
             <div class="ellips"></div>
         </div>
-    </div>    
+    </div>
+     
 </body>
 </html>
