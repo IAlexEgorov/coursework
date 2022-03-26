@@ -3,35 +3,14 @@ from flask import Flask, render_template, request
 import requests 
 import sqlite3
 import subprocess
-
-#class UserLogin:
-#    def fromDB(self, user_id, db):
-#        self.__user = db.getUser(user_id)
-#        return self
-#
-#    def is_authenticated():
-#        return True 
-#    
-#    def is_activ():
-#        return True
-#
-#    def is_anonymous(self):
-#        return False
-#
-#    def get_id(self):
-#        return str(self.__user['id'])
+from flask import Flask, render_template, request, redirect, url_for
+import flask_login
 
 app = Flask(__name__)
+app.secret_key = 'my_secret'
 
-#def connect_db():
-#    sqlite_connection = sqlite3.connect(app.config['DATABASE'])
-#    sqlite_connection.row_factory = sqlite3.Row
-#    return sqlite_connection
-
-#def create_db():
-
-
-#login_manager = LoginManager(app)
+login_manager = flask_login.LoginManager()
+login_manager.init_app(app)
 
 def checkUser(login, password):
     req='''ldapsearch 
@@ -44,14 +23,67 @@ def checkUser(login, password):
     else:
         return False
 
-def makeStand():
-    req=''''''
+class User(flask_login.UserMixin):
+    pass
+
+@login_manager.user_loader
+def user_loader(email):
+    #if email not in users:
+    #    return
+
+    user = User()
+    user.id = email
+    return user
+
+@login_manager.request_loader
+def request_loader(request):
+    email = request.form.get('email')
+    #if email not in users:
+    #    return
+
+    user = User()
+    user.id = email
+    return user
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return '''
+               <form action='login' method='POST'>
+                <input type='text' name='email' id='email' placeholder='email'/>
+                <input type='password' name='password' id='password' placeholder='password'/>
+                <input type='submit' name='submit'/>
+               </form>
+               '''
+    email = request.form['email']
+    if request.form['password'] == users[email]['password']:
+        user = User()
+        user.id = email
+        flask_login.login_user(user)
+        return redirect(url_for('index'))
+    return 'Bad login'
+
+
+# Добавить страницу для неавторизованных 
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return redirect(url_for('login'))
+
+
+@app.route('/logout')
+def logout():
+    flask_login.logout_user()
+    return 'Logged out'
+
 
 @app.route('/')
+@flask_login.login_required
 def index():
     return render_template('index.html', desc="Создание автостендов для разработчиков и тестеровщиков")
 
 @app.route('/', methods=["POST", "GET"])
+@flask_login.login_required
 def contact():
     if request.method == 'POST':
         print(request.form)
@@ -62,7 +94,6 @@ def contact():
             return render_template('index.html', desc="Успешно")
         else:
             return render_template('index.html', desc="Ошибка доступа")
-
 
 if __name__=="__main__":
     app.run(debug=True)
