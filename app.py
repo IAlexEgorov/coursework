@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from ldap3 import Connection, Server, Entry
 import flask_login
+
+from ldap3 import Connection, Server, Entry
 import os
 
 
@@ -15,6 +16,10 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 users = {"alex.e": {"password": "password"}}
+
+
+class User(flask_login.UserMixin):
+    pass
 
 
 def check_ldap_user(user):
@@ -35,12 +40,10 @@ def check_user_from_ldap_from_ldap(login, password):
         return False
 
 
-class User(flask_login.UserMixin):
-    pass
-
-
 @login_manager.user_loader
 def user_loader(login):
+    print("load user")
+    
     if login not in users:
         return
 
