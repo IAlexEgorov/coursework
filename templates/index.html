@@ -11,10 +11,14 @@
 </head>
 <body>
     <div class="main-div">
+        <header></header>
         <div class="first-inside">
             <div class="title-desc">
                 <span class="autostands-title">AutoStands</span><br>
-                <span class="autostands-desc">{{desc}}</span>
+                <span class="autostands-desc">Создание автостендов для разработчиков и тестеровщиков</span>
+                {% for msg in get_flashed_messages() %}
+                <br><span class="flash autostands-desc">{{msg}}</span>
+                {% endfor%}
             </div>
             <form action="/" method="post" class="form-sender">
                 <div class="input-main-rectangle">

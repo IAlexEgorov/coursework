@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import flask_login
 
 from ldap3 import Connection, Server, Entry
@@ -98,9 +98,7 @@ def logout():
 @app.route("/")
 @flask_login.login_required
 def index():
-    return render_template(
-        "index.html", desc="Создание автостендов для разработчиков и тестеровщиков"
-    )
+    return render_template("index.html")
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -110,10 +108,12 @@ def contact():
         print(request.form)
         login = request.form["login"]
         password = request.form["pass"]
+        
         if check_user_from_ldap_from_ldap(login, password):
-            return render_template("index.html", desc="Успешно")
+            flash("Успешно")
         else:
-            return render_template("index.html", desc="Ошибка доступа")
+            flash("Ошибка доступа")
+        return render_template("index.html")
 
 
 if __name__ == "__main__":

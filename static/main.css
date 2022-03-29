@@ -3,6 +3,12 @@ html{
     padding: 0;
     background: #252525;
 }
+
+header{
+    height: 100px;
+    background: #333;
+}
+
 .main-div{
     width: 800px;
     height: 800px;
