@@ -1,9 +1,5 @@
-from traceback import print_tb
-from flask import Flask, render_template, request
-import requests 
-import sqlite3
-import subprocess
 from flask import Flask, render_template, request, redirect, url_for
+from ldap3 import Connection, Server, Entry
 import flask_login
 
 app = Flask(__name__)
@@ -11,14 +7,21 @@ app.secret_key = 'my_secret'
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
+users = {'alex.e':{"password": "password"}}
 
-def checkUser(login, password):
-    req='''ldapsearch 
-    -h ipa.web-bee.loc -p 389 
-    -b uid='''+login+''',cn=users,cn=accounts,dc=web-bee,dc=loc 
-    -D uid='''+login+''',cn=users,cn=accounts,dc=web-bee,dc=loc -w '''+password
-    sub=subprocess.call(req.split())
-    if (sub==0):
+ldap_user = "uid=bot.admin,cn=users,cn=accounts,dc=web-bee,dc=loc"
+ldap_password = "DEVpassword"
+
+def check_ldap_user(user):
+    server = Server('ipa.web-bee.loc', use_ssl=True)
+
+    conn = Connection(server, user=ldap_user, password=ldap_password, auto_bind=True)
+    rez = conn.search('cn=users,cn=accounts,dc=web-bee,dc=loc', '(uid='+user+')', attributes="*")
+
+def check_user_from_ldap_from_ldap(login, password):
+    server = Server('ipa.web-bee.loc', use_ssl=True)
+    conn = Connection(server, user=ldap_user, password=ldap_password, auto_bind=True)
+    if conn:
         return True
     else:
         return False
@@ -27,22 +30,22 @@ class User(flask_login.UserMixin):
     pass
 
 @login_manager.user_loader
-def user_loader(email):
-    #if email not in users:
-    #    return
+def user_loader(login):
+    if login not in users:
+        return
 
     user = User()
-    user.id = email
+    user.id = login
     return user
 
 @login_manager.request_loader
 def request_loader(request):
-    email = request.form.get('email')
-    #if email not in users:
-    #    return
+    login = request.form.get('login')
+    if login not in users:
+        return
 
     user = User()
-    user.id = email
+    user.id = login
     return user
 
 
@@ -51,15 +54,16 @@ def login():
     if request.method == 'GET':
         return '''
                <form action='login' method='POST'>
-                <input type='text' name='email' id='email' placeholder='email'/>
+                <input type='text' name='login' id='login' placeholder='email'/>
                 <input type='password' name='password' id='password' placeholder='password'/>
                 <input type='submit' name='submit'/>
                </form>
                '''
-    email = request.form['email']
-    if request.form['password'] == users[email]['password']:
+    login = request.form['login']
+    password = request.form['password']
+    if check_user_from_ldap_from_ldap(login, password):
         user = User()
-        user.id = email
+        user.id = login
         flask_login.login_user(user)
         return redirect(url_for('index'))
     return 'Bad login'
@@ -89,8 +93,7 @@ def contact():
         print(request.form)
         login = request.form["login"]
         password = request.form["pass"]
-        if checkUser(login, password):
-
+        if check_user_from_ldap_from_ldap(login, password):
             return render_template('index.html', desc="Успешно")
         else:
             return render_template('index.html', desc="Ошибка доступа")
