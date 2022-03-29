@@ -3,26 +3,28 @@ from ldap3 import Connection, Server, Entry
 import flask_login
 import os
 
+
+LDAP_USER = os.getenv("LDAP_USER")
+LDAP_PASSWORD = os.getenv("LDAP_PASSWORD")
+
+
 app = Flask(__name__)
 app.secret_key = 'my_secret'
 
-LDAP_USER = "uid=bot.admin,cn=users,cn=accounts,dc=web-bee,dc=loc"
-LDAP_PASSWORD = "DEVpassword"
-
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
-users = {'alex.e':{"password": "password"}}
 
+users = {'alex.e':{"password": "password"}}
 
 def check_ldap_user(user):
     server = Server('ipa.web-bee.loc', use_ssl=True)
 
-    conn = Connection(server, user=ldap_user, password=ldap_password, auto_bind=True)
+    conn = Connection(server, user=LDAP_USER, password=LDAP_PASSWORD, auto_bind=True)
     rez = conn.search('cn=users,cn=accounts,dc=web-bee,dc=loc', '(uid='+user+')', attributes="*")
 
 def check_user_from_ldap_from_ldap(login, password):
     server = Server('ipa.web-bee.loc', use_ssl=True)
-    conn = Connection(server, user=ldap_user, password=ldap_password, auto_bind=True)
+    conn = Connection(server, user=LDAP_USER, password=LDAP_PASSWORD, auto_bind=True)
     if conn:
         return True
     else:
