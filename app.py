@@ -1,16 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
 from ldap3 import Connection, Server, Entry
 import flask_login
+import os
 
 app = Flask(__name__)
 app.secret_key = 'my_secret'
+
+LDAP_USER = "uid=bot.admin,cn=users,cn=accounts,dc=web-bee,dc=loc"
+LDAP_PASSWORD = "DEVpassword"
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 users = {'alex.e':{"password": "password"}}
 
-ldap_user = "uid=bot.admin,cn=users,cn=accounts,dc=web-bee,dc=loc"
-ldap_password = "DEVpassword"
 
 def check_ldap_user(user):
     server = Server('ipa.web-bee.loc', use_ssl=True)
