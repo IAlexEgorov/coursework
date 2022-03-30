@@ -11,6 +11,36 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install env.
 python -m pip install -r requirements.txt
 ```
 
+## First steps
+
+Before the starting of the application you must appoint ENV variables in Linux
+
+```bash
+export LDAP_USER="uid=admin,cn=users,cn=accounts,dc=example,dc=com"
+export LDAP_PASSWORD="your_admin_password"
+export SECRET_KEY="SeCrEt_KeY"
+export DATABASE="/tmp/flsite.db"
+```
+
+or in Windows
+
+```console
+SET LDAP_USER="uid=admin,cn=users,cn=accounts,dc=example,dc=com"
+SET LDAP_PASSWORD="your_admin_password"
+SET SECRET_KEY="SeCrEt_KeY"
+SET DATABASE="/tmp/flsite.db"
+```
+
+and after that create your Data Base in python terminal
+
+
+```python
+import app.py
+
+create_db()
+
+```
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

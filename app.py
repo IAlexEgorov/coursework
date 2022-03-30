@@ -5,14 +5,13 @@ import sqlite3
 from classes.FDataBase import FDataBase
 from classes.UserLogin import UserLogin
 
+# Configuration
 LDAP_USER = os.getenv("LDAP_USER")
 LDAP_PASSWORD = os.getenv("LDAP_PASSWORD")
 
-
-# Configuration
-DATABASE = "/tmp/flsite.db"
+DATABASE = os.getenv("DATABASE")
+SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
-SECRET_KEY = "jlkvlvbreoqefvb"
 
 app = Flask(__name__)
 app.config.from_object(__name__)
