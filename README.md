@@ -24,5 +24,7 @@ Please make sure to update tests as appropriate.
 
 Вынести всю конфигурацию и секреты 
 
+Уязвимость sql injection
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
