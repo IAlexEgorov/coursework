@@ -23,8 +23,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-my_secret.txt
-
 # Flask stuff:
 instance/
 .webassets-cache
