@@ -91,6 +91,7 @@ def unauthorized_handler():
 def index():
     if request.method == "POST":
         print(request.form)
+        flash('Создание машины', category='success')
         return render_template("index.html")
     return render_template("index.html")
 
@@ -111,6 +112,7 @@ def login():
         flash('Успешный вход', category='success')
         return redirect(url_for('index'))
     flash('Неверные данные', category='error')
+    logout_user()
     return render_template("login.html")
 
 
