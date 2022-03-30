@@ -19,7 +19,9 @@ Please make sure to update tests as appropriate.
 
 ## Comming soon
 Добавить подключение к лдап 
+
 Добавить подключение к jenkins
+
 Вынести всю конфигурацию и секреты 
 
 ## License
