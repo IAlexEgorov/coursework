@@ -1,44 +1,53 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, g
 import flask_login
-
 from ldap3 import Connection, Server, Entry
 import os
-
+import sqlite3
 
 LDAP_USER = os.getenv("LDAP_USER")
 LDAP_PASSWORD = os.getenv("LDAP_PASSWORD")
 
 
+# Конфигурация 
+DATABASE = "/tmp/flsite.db"
+DEBUG = True
+SECRET_KEY = "jlkvlvbreoqefvb"
+
 app = Flask(__name__)
 app.secret_key = "my_secret"
+app.config.from_object(__name__)
+
+app.config.update(dict(DATABASE=os.path.join(app.root_path,"flsite.db")))
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
-
-users = {"alex.e": {"password": "password"}}
 
 
 class User(flask_login.UserMixin):
     pass
 
 
-def check_ldap_user(user):
-    server = Server("ipa.web-bee.loc", use_ssl=True)
+def connect_db():
+    conn = sqlite3.connect(app.config["DATABASE"])
+    conn.row_factory = sqlite3.Row
+    return conn
 
-    conn = Connection(server, user=LDAP_USER, password=LDAP_PASSWORD, auto_bind=True)
-    rez = conn.search(
-        "cn=users,cn=accounts,dc=web-bee,dc=loc", "(uid=" + user + ")", attributes="*"
-    )
+def create_db():
+    db = connect_db()
+    with app.open_resource("sq_db.sql", mode="r") as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+    db.close()
 
+def get_db():
+    if not hasattr(g, "link_db"):
+        g.link_db = connect_db()
+    return g.link_db
 
-def check_user_from_ldap_from_ldap(login, password):
-    server = Server("ipa.web-bee.loc", use_ssl=True)
-    conn = Connection(server, user=LDAP_USER, password=LDAP_PASSWORD, auto_bind=True)
-    if conn:
-        return True
-    else:
-        return False
-
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, 'link_db'):
+        g.link_db.close()
 
 @login_manager.user_loader
 def user_loader(login):
@@ -117,4 +126,5 @@ def contact():
 
 
 if __name__ == "__main__":
+    create_db() 
     app.run(debug=True)
