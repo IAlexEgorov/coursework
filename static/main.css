@@ -2,40 +2,57 @@ html{
     margin: 0;
     padding: 0;
     background: #252525;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
 }
 
 header{
     height: 5%;
-    background: #333;
+    background: rgb(51, 51, 51, 0.7);
+    
+    box-shadow: 0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-main-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-name{    
+    font-size: 25px; 
+    padding: 10px;  
+    color: #BBBBBB;
 }
 
 button {
     width: 125px;
     height: 35px;
+
     background: #444444;
     border-radius: 5px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
+    color: #81D3F9;
+
     font-size: 12px;
     line-height: 14px;
-    color: #81D3F9;
+    box-shadow: 0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header-buttons-div{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 .header-buttons{
     margin: 10px;
+    margin-right: 50px;
 }
 
 .main-div{
     width: 800px;
     height: 800px;
-    /*border: 2px solid purple;*/
     
     display: flex;
     flex-direction: row;
@@ -56,14 +73,12 @@ button {
 
 .title-desc{
     margin: 20px 10px 50px 10px;
-    /*border: 2px solid green;*/
 }
 .input-main-rectangle{
     width: 375px;
     
     background: #252525;
     box-shadow: 0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2);
-    /*border: 2px solid red;*/
 }
 .ellips{
     width: 300px;
@@ -71,7 +86,6 @@ button {
     border-radius: 500px 0 0 500px;
     
     background: #0088D1;
-    /*border: 2px solid yellow;*/
 }
 
 
@@ -79,9 +93,6 @@ button {
     width: 249px;
     height: 56px;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
     font-size: 48px;
     line-height: 56px;
     color: #EEEEEE;
@@ -90,9 +101,6 @@ button {
     width: 455px;
     height: 19px;
     
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 19px;
     

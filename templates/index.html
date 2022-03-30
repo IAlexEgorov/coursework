@@ -11,9 +11,12 @@
 </head>
 <body>
     <header>
-        <div class="header-buttons-div">
-            <button class="header-buttons login-button"></button>
-            <button class="header-buttons logout-button"></button>
+        <div class="header-main-div">
+            <span class="user-name">{{user}}</span>
+            <div class="header-buttons-div">
+                <a href="/login"><button class="header-buttons login-button">Log In</button></a>
+                <a href="/logout"><button class="header-buttons logout-button">Log Out</button></a>
+            </div>
         </div>
     </header>
     <div class="main-div">
@@ -25,7 +28,7 @@
                 <br><span class="flash autostands-desc">{{msg}}</span>
                 {% endfor%}
             </div>
-            <form action="/" method="post" class="form-sender">
+            <form action="/login" method="post" class="form-sender">
                 <div class="input-main-rectangle">
                     <div class="input-rectangle">
                         
@@ -48,16 +51,6 @@
                                     <legend>Path to dockerfile and docker-compose</legend>
                                     <input type="text" name="dockerPath" value=".">
                                     <span>Относительный путь в репозитории до Docker файлов</span>
-                            </div>
-                            <div class="input-forms">
-                                <legend>Login</legend>
-                                <input type="text" name="login" value="">
-                                <span>Логин от учетки FreeIPA</span>
-                            </div>
-                            <div class="input-forms">
-                                <legend>Password</legend>
-                                <input type="password" name="pass" value="">
-                                <span>Пароль от учетки FreeIPA</span>
                             </div>
                     </div>
         

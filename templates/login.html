@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='input_rect.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='buttons.css') }}">
+    <title>Autostands</title>
+</head>
+<body>
+    <header>
+        <div class="header-main-div">
+            <span class="user-name">{{user}}</span>
+            <div class="header-buttons-div">
+                <a href="/login"><button class="header-buttons login-button">Log In</button></a>
+                <a href="/logout"><button class="header-buttons logout-button">Log Out</button></a>
+            </div>
+        </div>
+    </header>
+    <div class="main-div">
+        <div class="first-inside">
+            <div class="title-desc">
+                <span class="autostands-title">AutoStands</span><br>
+                <span class="autostands-desc">Создание автостендов для разработчиков и тестеровщиков</span>
+                {% for msg in get_flashed_messages() %}
+                <br><span class="flash autostands-desc">{{msg}}</span>
+                {% endfor%}
+            </div>
+            <form action="/" method="post" class="form-sender">
+                <div class="input-main-rectangle">
+                    <div class="input-rectangle">
+                        <div class="input-forms">
+                            <legend>Login</legend>
+                            <input type="text" name="login" value="">
+                            <span>Логин от учетки FreeIPA</span>
+                        </div>
+                        <div class="input-forms">
+                            <legend>Password</legend>
+                            <input type="password" name="pass" value="">
+                            <span>Пароль от учетки FreeIPA</span>
+                        </div>
+                    </div>
+        
+                    <div class="buttons">
+                        <div class="create-button">
+                            <button type="submit" value="create">LOGIN</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

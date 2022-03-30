@@ -3,21 +3,7 @@
     flex-direction: row;
 
     margin: 15px;
+    padding-bottom: 15px;
     justify-content: space-evenly;    
 }
 
-.buttons button{
-    width: 125px;
-    height: 35px;
-    
-    background: #444444;
-    border-radius: 5px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-
-    color: #81D3F9;
-} 
