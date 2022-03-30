@@ -24,6 +24,8 @@ Please make sure to update tests as appropriate.
 
 Вынести всю конфигурацию и секреты 
 
+OAuth2 
+
 Уязвимость sql injection
 
 ## License
