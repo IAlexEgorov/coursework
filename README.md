@@ -58,5 +58,7 @@ OAuth2
 
 Уязвимость sql injection
 
+Не видит окружения set 
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

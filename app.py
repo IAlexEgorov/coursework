@@ -6,11 +6,15 @@ from classes.FDataBase import FDataBase
 from classes.UserLogin import UserLogin
 
 # Configuration
-LDAP_USER = os.getenv("LDAP_USER")
-LDAP_PASSWORD = os.getenv("LDAP_PASSWORD")
+#LDAP_USER = os.getenv("LDAP_USER")
+#LDAP_PASSWORD = os.getenv("LDAP_PASSWORD")
+#
+#DATABASE = os.getenv("DATABASE")
+#SECRET_KEY = os.getenv("SECRET_KEY")
 
-DATABASE = os.getenv("DATABASE")
-SECRET_KEY = os.getenv("SECRET_KEY")
+DATABASE = "/tmp/flsite.db"
+SECRET_KEY = "fweouhfdbk3"
+
 DEBUG = True
 
 app = Flask(__name__)
