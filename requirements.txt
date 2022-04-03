@@ -26,3 +26,4 @@ sqlalchemy==1.4.32
     # via flask-sqlalchemy
 werkzeug==2.1.0
     # via flask
+db-sqlite3==0.0.1
