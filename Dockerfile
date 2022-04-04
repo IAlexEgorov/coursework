@@ -1,17 +1,12 @@
-FROM python:3.8
+FROM python:3.9
 
 WORKDIR /srv
 
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-RUN python3 db_install.py
+COPY . . 
 
-COPY classes/ .classes/
-COPY static/ .static/
-COPY templates/ .templates/
-
-COPY app.py .
-COPY db_install.py .
-
+RUN ls -la
+EXPOSE 5000
 
 CMD [ "python", "./app.py" ]
