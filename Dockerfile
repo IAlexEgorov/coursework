@@ -5,7 +5,9 @@ WORKDIR /srv
 COPY requirements.txt requirements.txt
 COPY db_install.py db_install.py
 COPY app.py app.py
+COPY sq_db.sql sq_db.sql
 
+COPY ./classes ./classes
 COPY ./static ./static 
 COPY ./templates ./templates
 
