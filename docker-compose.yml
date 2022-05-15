@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  web:
+    image: "{{ STAND_IMAGE }}"
+    ports:
+      - 5000:5000
+    volumes:
+      - ./flsite.db:/srv/flsite.db
