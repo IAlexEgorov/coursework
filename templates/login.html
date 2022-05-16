@@ -5,6 +5,15 @@
 {% endblock %}
 
 {% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="alert alert-danger">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+
 <body class="text-center">
     <main class="form-signin w-100 m-auto" style="width: 40%!important;">
       <form method="post">
